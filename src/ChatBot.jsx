@@ -1,22 +1,28 @@
 import React, { useState } from 'react';
 import './ChatBot.css'; // Assume you have a CSS file for styling
+import axios from 'axios'; // Import Axios
 
 function ChatBot() {
   const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
 
-  const sendMessage = (e) => {
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (!inputText.trim()) return;
+    
     // Add the new message to the messages array
     setMessages([...messages, { text: inputText, sender: 'user' }]);
     setInputText('');
 
-    // Here you would call your backend API to get the response from ChatGPT
-    // Simulating a bot response
-    setTimeout(() => {
-      setMessages((prevMessages) => [...prevMessages, { text: 'This is a simulated response from the bot.', sender: 'bot' }]);
-    }, 500);
+    try {
+      // Send the message to the Flask backend
+      const response = await axios.post('http://localhost:5000/ask/', { question: inputText });
+      
+      // Add the response from the backend to the messages array
+      setMessages([...messages, { text: response.data.answer, sender: 'bot' }]);
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -32,8 +38,7 @@ function ChatBot() {
         ))}
       </div>
       <form className="chat-footer" onSubmit={sendMessage}>
-        <input
-          type="text"
+        <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           placeholder="Type a message..."
