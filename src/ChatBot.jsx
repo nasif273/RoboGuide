@@ -16,7 +16,7 @@ function ChatBot() {
 
     try {
       // Send the message to the Flask backend
-      const response = await axios.post('http://localhost:5000/ask/', { question: inputText });
+      const response = await axios.post('http://localhost:5000/ask', { question: inputText });
       
       // Add the response from the backend to the messages array
       setMessages([...messages, { text: response.data.answer, sender: 'bot' }]);
