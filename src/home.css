@@ -1,0 +1,37 @@
+.home {
+  max-width: 1500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.home__image {
+  width: 100%;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+  z-index: -1;
+  margin-bottom: -150px;
+}
+.home__row {
+  display: flex;
+  z-index: 1;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.projecthelp {
+  align-items: center;
+  height: 150px;
+  width: 700px;
+  margin: 20px;
+  margin-left:20px ;
+  padding: 15px 30px; /* Increase padding for better button appearance */
+  border: none;
+  border-radius: 10px; /* Rounded corners */
+  background-color: #36c78b; /* Blue background color */
+  color: #fff; /* White text color */
+  font-size: 20px; /* Increase font size */
+  font-weight: bold; /* Bold text */
+  cursor: pointer;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.projecthelp:hover {
+  background-color: #7eefbc; /* Darker blue on hover */
+}
