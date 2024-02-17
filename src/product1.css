@@ -1,0 +1,33 @@
+.product1 {
+    max-width: 800px;
+    margin: 0 auto;
+    max-height: 2000px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product1__title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .product1__description {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #666;
+    margin-bottom: 15px;
+  }
+  
+  .product1__code {
+    font-size: 14px;
+    font-family: "Courier New", monospace;
+    background-color: #f5f5f5;
+    padding: 10px;
+    border-radius: 4px;
+    overflow: auto; /* Add overflow property to allow horizontal scrolling */
+  }
+  
