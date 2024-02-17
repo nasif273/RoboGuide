@@ -8,7 +8,7 @@ import Product2 from "./product2.jsx";
 import Product3 from "./product3.jsx";
 import ProjectSuggestion from "./projectSuggestion.jsx";
 import Signup from "./signup.jsx";
-
+import ChatBot from "./ChatBot.jsx";
 import "./App.css";
 
 function App() {
@@ -25,6 +25,7 @@ function App() {
           <Route path="/product/4" element={<Product3 />} />
           <Route path="/product/5" element={<Product3 />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/chatbot" element={<ChatBot />} />
         </Routes>
       </div>
       <Routes>
