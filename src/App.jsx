@@ -26,15 +26,12 @@ function App() {
           <Route path="/product/5" element={<Product3 />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/chatbot" element={<ChatBot />} />
+          <Route path="/projectSuggestion" element={<ProjectSuggestion />} />
         </Routes>
-      </div>
-      <Routes>
-        <Route path="/projectSuggestion" element={<ProjectSuggestion />} />
-      </Routes>
-      <br></br><br></br><br></br><br></br>
+      {/* <br></br><br></br><br></br><br></br> */}
       <Footer />
+      </div>
     </Router>
-
 )}
 
 export default App;

@@ -1,52 +1,61 @@
 import React, { useState } from "react";
+import axios from 'axios'; // Make sure to install axios
 import "./projectSuggestion.css";
 
 function ProjectSuggestion() {
-  const [priceRange, setPriceRange] = useState("");
-  const [preference, setPreference] = useState("");
+  const [budget, setBudget] = useState("");
+  const [projectName, setProjectName] = useState("");
+  const [components, setComponents] = useState([]);
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle form submission here, e.g., send data to server
-    console.log("Price Range:", priceRange);
-    console.log("Preference:", preference);
-    // Reset form fields after submission
-    setPriceRange("");
-    setPreference("");
+
+    try {
+      const response = await axios.get('http://localhost:5000/api/components', {
+        params: { projectName, budget }
+      });
+      setComponents(response.data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   };
 
   return (
     <div className="projectSuggestion">
-      <h2>Project Suggestion Form</h2>
+      <h2>Project Component Suggestion Form</h2>
       <form onSubmit={handleSubmit}>
-        <div className="form__group">
-          <label htmlFor="priceRange">Price Range:</label>
+        <div>
+          <label htmlFor="projectName">Project Name:</label>
           <input
             type="text"
-            id="priceRange"
-            className="form__input"
-            value={priceRange}
-            onChange={(e) => setPriceRange(e.target.value)}
-            placeholder="Enter price range"
+            id="projectName"
+            value={projectName}
+            onChange={(e) => setProjectName(e.target.value)}
+            placeholder="Enter project name"
             required
           />
         </div>
-        <div className="form__group">
-          <label htmlFor="preference">Preference:</label>
+        <div>
+          <label htmlFor="budget">Budget (BDT):</label>
           <input
-            type="text"
-            id="preference"
-            className="form__input"
-            value={preference}
-            onChange={(e) => setPreference(e.target.value)}
-            placeholder="Enter preference"
+            type="number"
+            id="budget"
+            value={budget}
+            onChange={(e) => setBudget(e.target.value)}
+            placeholder="Enter your budget"
             required
           />
         </div>
-        <button type="submit" className="submit__button">
-          Submit
-        </button>
+        <button type="submit">Get Suggestions</button>
       </form>
+      <div>
+        <h3>Component Suggestions:</h3>
+        <ul>
+          {components.map((component, index) => (
+            <li key={index}>{`${component.component} - ${component.cost} BDT`}</li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
